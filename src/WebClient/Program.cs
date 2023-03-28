@@ -113,12 +113,16 @@ namespace WebClient
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine($"Пользователь {newCustomer.Firstname} {newCustomer.Lastname} с Id {response.Content.ReadAsStringAsync().Result} создан успешно");
+                Console.WriteLine("Проверяем");
+                GetCustomerById(int.Parse(response.Content.ReadAsStringAsync().Result)).Wait();
             }
             if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
             {
                 Console.WriteLine($"Пользователь с {newCustomer.Firstname} {newCustomer.Lastname} уже зарегистрирован");
             }
-            Console.WriteLine(response.StatusCode);
+
+            
+
         }
     }
 }
