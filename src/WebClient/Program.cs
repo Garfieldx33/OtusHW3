@@ -120,9 +120,6 @@ namespace WebClient
             {
                 Console.WriteLine($"Пользователь с {newCustomer.Firstname} {newCustomer.Lastname} уже зарегистрирован");
             }
-
-            
-
         }
     }
 }
