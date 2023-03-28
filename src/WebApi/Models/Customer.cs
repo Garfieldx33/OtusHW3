@@ -4,12 +4,12 @@ namespace WebApi.Models
 {
     public class Customer
     {
-        public long Id { get; init; }
+        public long id { get; init; }
         
         [Required]
-        public string Firstname { get; init; }
+        public string firstname { get; init; }
 
         [Required]
-        public string Lastname { get; init; }
+        public string lastname { get; init; }
     }
 }

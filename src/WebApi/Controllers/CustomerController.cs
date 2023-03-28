@@ -8,16 +8,26 @@ namespace WebApi.Controllers
     [Route("customers")]
     public class CustomerController : Controller
     {
-        [HttpGet("{id:long}")]   
-        public Task<Customer> GetCustomerAsync([FromRoute] long id)
+        ICustomersRepository customersRepository;
+        
+        public CustomerController(ICustomersRepository repository) 
         {
-            throw new NotImplementedException();
+            customersRepository = repository;
+        }
+        
+        [HttpGet("{id:long}")]   
+        public IActionResult GetCustomer([FromRoute] long id)
+        {
+             var customer = customersRepository.Get(id).GetAwaiter().GetResult();
+            return customer != null ? Ok(customer) : NotFound();
         }
 
+
         [HttpPost("")]   
-        public Task<long> CreateCustomerAsync([FromBody] Customer customer)
+        public IActionResult CreateCustomer([FromBody] Customer customer)
         {
-            throw new NotImplementedException();
+            long i = customersRepository.Create(customer).GetAwaiter().GetResult();
+            return i != 0 ? Ok(i) : Conflict();
         }
     }
 }
